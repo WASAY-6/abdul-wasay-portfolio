@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdul Wasay — Developer &amp; Growth Marketer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#12213C;
+    --navy-panel:#1B2E4F;
+    --navy-panel-2:#213658;
+    --parchment:#E8E1CF;
+    --text-light:#EDEAE0;
+    --text-dim:#9FB0C8;
+    --amber:#E3A857;
+    --green:#6FA287;
+    --accent: var(--amber);
+    --accent-soft: rgba(227,168,87,0.15);
+    --rule: rgba(232,225,207,0.14);
+  }
+  body.mode-marketer{
+    --accent: var(--green);
+    --accent-soft: rgba(111,162,135,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--navy-deep);
+    color:var(--text-light);
+    font-family:'Public Sans', sans-serif;
+    line-height:1.6;
+    transition:background 0.4s ease;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent-soft); color:var(--text-light);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(18,33,60,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:920px; margin:0 auto; padding:16px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .nav-mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; letter-spacing:0.04em;
+    color:var(--parchment);
+  }
+  .nav-links{display:flex; gap:24px; font-size:14px; font-family:'IBM Plex Mono', monospace;}
+  .nav-links a{text-decoration:none; color:var(--text-dim); transition:color 0.25s;}
+  .nav-links a:hover{color:var(--accent);}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{padding:88px 0 56px;}
+  .hero-grid{display:grid; grid-template-columns:1fr 220px; gap:40px; align-items:start;}
+  @media (max-width:700px){ .hero-grid{grid-template-columns:1fr; } .hero-photo{order:-1; width:150px; margin:0 auto 8px;} }
+  .hero-photo{
+    width:220px; aspect-ratio:3/4; border-radius:10px; overflow:hidden;
+    border:1px solid var(--rule); position:relative;
+    box-shadow:0 0 0 6px var(--navy-panel);
+  }
+  .hero-photo::after{
+    content:""; position:absolute; inset:0;
+    border:1px solid var(--accent); border-radius:10px;
+    opacity:0.6; transition:border-color 0.4s ease;
+    pointer-events:none;
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:grayscale(0.25) contrast(1.05);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 18px;
+    transition:color 0.4s ease;
+  }
+  h1{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size:clamp(38px, 6vw, 60px);
+    line-height:1.08;
+    margin:0 0 22px;
+    color:var(--parchment);
+  }
+  h1 em{font-style:italic; color:var(--accent); transition:color 0.4s ease;}
+  .hero-sub{
+    font-size:18px; color:var(--text-dim); max-width:560px; margin:0 0 40px;
+  }
+
+  /* TOGGLE — signature element */
+  .toggle-block{margin-bottom:8px;}
+  .toggle-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.06em;
+    color:var(--text-dim); text-transform:uppercase; margin-bottom:10px;
+  }
+  .toggle{
+    display:inline-flex; align-items:center; gap:0;
+    border:1px solid var(--rule); border-radius:999px; padding:4px;
+    background:var(--navy-panel);
+  }
+  .toggle button{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    background:none; border:none; cursor:pointer;
+    padding:9px 18px; border-radius:999px; color:var(--text-dim);
+    transition:background 0.3s ease, color 0.3s ease;
+  }
+  .toggle button.active{
+    background:var(--accent); color:var(--navy-deep); font-weight:600;
+  }
+
+  /* SECTIONS */
+  section{padding:56px 0; border-top:1px solid var(--rule);}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:32px;}
+  .sec-num{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--accent); transition:color 0.4s ease;}
+  h2{
+    font-family:'Newsreader', serif; font-weight:500; font-size:28px;
+    margin:0; color:var(--parchment);
+  }
+
+  p{color:var(--text-dim); margin:0 0 14px;}
+  .lede{color:var(--text-light); font-size:17px;}
+
+  /* SKILLS */
+  .skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:24px;}
+  .skill-card{
+    background:var(--navy-panel); border:1px solid var(--rule); border-radius:10px; padding:22px;
+  }
+  .skill-card h3{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; text-transform:uppercase;
+    letter-spacing:0.05em; color:var(--accent); margin:0 0 12px; transition:color 0.4s ease;
+  }
+  .skill-card ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:15px;}
+  .skill-card li{margin-bottom:4px;}
+
+  /* PROJECTS */
+  .proj{
+    border:1px solid var(--rule); border-radius:10px; padding:24px;
+    margin-bottom:18px; background:var(--navy-panel);
+    transition:border-color 0.3s ease;
+  }
+  .proj:hover{border-color:var(--accent);}
+  .proj-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .proj h3{font-family:'Newsreader', serif; font-size:20px; font-weight:500; margin:0; color:var(--text-light);}
+  .proj-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--navy-deep);
+    background:var(--accent); padding:3px 10px; border-radius:999px; transition:background 0.4s ease;
+    white-space:nowrap;
+  }
+  .proj p{margin-top:10px; margin-bottom:0; font-size:15px;}
+
+  .tag-dev{display:inline;}
+  .tag-mkt{display:inline;}
+  body:not(.mode-marketer) .mkt-only{opacity:0.55;}
+  body.mode-marketer .dev-only{opacity:0.55;}
+  .dev-only, .mkt-only{transition:opacity 0.3s ease;}
+
+  /* TIMELINE */
+  .tl-item{display:grid; grid-template-columns:110px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--rule);}
+  .tl-item:last-child{border-bottom:none;}
+  .tl-date{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--accent); transition:color 0.4s ease;}
+  .tl-item h3{font-size:16px; font-weight:600; margin:0 0 4px; color:var(--text-light); font-family:'Public Sans';}
+  .tl-item p{margin:0; font-size:14.5px;}
+
+  /* CONTACT */
+  .contact-panel{
+    background:var(--navy-panel); border:1px solid var(--rule); border-radius:12px;
+    padding:36px; text-align:center;
+  }
+  .contact-panel h2{margin-bottom:12px;}
+  .contact-list{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px 24px; margin-top:22px;
+    font-family:'IBM Plex Mono', monospace; font-size:14px;
+  }
+  .contact-list a{text-decoration:none; color:var(--text-light); border-bottom:1px solid var(--accent); padding-bottom:2px; transition:color 0.3s ease;}
+  .contact-list a:hover{color:var(--accent);}
+
+  footer{padding:32px 0 60px; text-align:center; color:var(--text-dim); font-size:13px; font-family:'IBM Plex Mono', monospace;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">AW / portfolio</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" id="eyebrow">Currently in developer mode</p>
+        <h1>Abdul Wasay builds <em id="hero-word">structured code</em>,<br>and makes it findable.</h1>
+        <p class="hero-sub">BSCS student at University of Central Punjab, splitting focus between C++/OOP development and SEO-driven growth. This page reads differently depending on which side you came for — flip the switch.</p>
+
+        <div class="toggle-block">
+          <div class="toggle-label">Reading this as a...</div>
+          <div class="toggle">
+            <button id="btn-dev" class="active" onclick="setMode('dev')">&lt;/&gt; Developer</button>
+            <button id="btn-mkt" onclick="setMode('mkt')">$ Marketer</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="profile-photo.jpg" alt="Abdul Wasay">
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+    <p class="lede">I'm a fourth-semester BSCS student based in Lahore/Gujranwala, Pakistan, working across two disciplines: structured programming in C++ and practical SEO/affiliate marketing. I use modern AI tools to move faster on both sides without cutting corners — writing cleaner code and researching keywords more efficiently.</p>
+    <p>Right now I'm looking for freelance or trainee work where I can apply either skill set — or both — to real projects.</p>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3>Development</h3>
+        <ul>
+          <li>C++ — structured &amp; object-oriented programming</li>
+          <li>MySQL / database design</li>
+          <li>Data structures (RB Trees, OOP modeling)</li>
+          <li>Debugging &amp; code review</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Marketing &amp; SEO</h3>
+        <ul>
+          <li>Keyword research &amp; content optimization</li>
+          <li>Affiliate program evaluation</li>
+          <li>On-page SEO audits</li>
+          <li>Campaign experimentation &amp; targeting</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Tools</h3>
+        <ul>
+          <li>Microsoft Word / Excel</li>
+          <li>AI-assisted research &amp; workflows</li>
+          <li>Git / GitHub (in progress)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <ul>
+          <li>Urdu — native</li>
+          <li>English — professional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Projects</h2></div>
+
+    <div class="proj dev-only">
+      <div class="proj-top">
+        <h3>Hospital Management System</h3>
+        <span class="proj-tag">C++</span>
+      </div>
+      <p>Console-based application managing patient records, appointments, and billing for a hospital environment.</p>
+    </div>
+
+    <div class="proj dev-only">
+      <div class="proj-top">
+        <h3>Airline Management System</h3>
+        <span class="proj-tag">C++ / OOP</span>
+      </div>
+      <p>Simulated airline booking operations — seat allocation, ticketing, and flight scheduling using object-oriented C++.</p>
+    </div>
+
+    <div class="proj dev-only">
+      <div class="proj-top">
+        <h3>Hostel Management System</h3>
+        <span class="proj-tag">DBMS</span>
+      </div>
+      <p>Database-backed system for managing hostel records, built around relational schema design.</p>
+    </div>
+
+    <div class="proj dev-only">
+      <div class="proj-top">
+        <h3>RB Tree Implementation</h3>
+        <span class="proj-tag">Data Structures</span>
+      </div>
+      <p>From-scratch implementation of a Red-Black Tree, covering insertion, deletion, and rebalancing.</p>
+    </div>
+
+    <div class="proj mkt-only">
+      <div class="proj-top">
+        <h3>Traffic Simulation</h3>
+        <span class="proj-tag">Applied Logic</span>
+      </div>
+      <p>Simulation model replicating traffic flow and congestion patterns — the same systems-thinking used in campaign and funnel analysis.</p>
+    </div>
+
+    <div class="proj mkt-only">
+      <div class="proj-top">
+        <h3>Affiliate Marketing Practice</h3>
+        <span class="proj-tag">SEO / Growth</span>
+      </div>
+      <p>Ongoing research into high-converting affiliate programs across niches, and hands-on campaign experimentation for audience targeting.</p>
+    </div>
+
+    <div class="proj mkt-only">
+      <div class="proj-top">
+        <h3>Online Clothing Store</h3>
+        <span class="proj-tag">Software Engineering</span>
+      </div>
+      <p>E-commerce project covering both the software engineering build and the storefront's SEO-facing structure.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Experience &amp; Education</h2></div>
+    <div class="tl-item">
+      <div class="tl-date">2024 — Present</div>
+      <div>
+        <h3>Affiliate Marketer, Freelance / Self-Employed</h3>
+        <p>Researching high-converting affiliate programs across niches, running promotional campaigns across digital platforms, and building foundational skills in audience targeting.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">In Progress</div>
+      <div>
+        <h3>BSCS, University of Central Punjab</h3>
+        <p>4th semester. Coursework spanning OOP, data structures, databases, and software engineering.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2024</div>
+      <div>
+        <h3>F.Sc (Pre-Engineering)</h3>
+        <p>Completed pre-engineering intermediate studies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-panel">
+      <h2>Let's work together</h2>
+      <p>Whether it's a C++ project, a database problem, or an SEO audit — I reply within a few hours.</p>
+      <div class="contact-list">
+        <a href="mailto:wasay70342@gmail.com">wasay70342@gmail.com</a>
+        <a href="tel:03251426624">0325-1426624</a>
+        <span style="color:var(--text-dim)">Lahore / Gujranwala, Pakistan</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>Abdul Wasay — built to work in both modes.</footer>
+</div>
+
+<script>
+  function setMode(mode){
+    const body = document.body;
+    const btnDev = document.getElementById('btn-dev');
+    const btnMkt = document.getElementById('btn-mkt');
+    const eyebrow = document.getElementById('eyebrow');
+    const heroWord = document.getElementById('hero-word');
+
+    if(mode === 'mkt'){
+      body.classList.add('mode-marketer');
+      btnMkt.classList.add('active');
+      btnDev.classList.remove('active');
+      eyebrow.textContent = 'Currently in marketer mode';
+      heroWord.textContent = 'search visibility';
+    } else {
+      body.classList.remove('mode-marketer');
+      btnDev.classList.add('active');
+      btnMkt.classList.remove('active');
+      eyebrow.textContent = 'Currently in developer mode';
+      heroWord.textContent = 'structured code';
+    }
+  }
+</script>
+
+</body>
+</html>
